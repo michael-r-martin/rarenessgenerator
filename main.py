@@ -79,29 +79,86 @@ createdImages = []
 i = 1
 for i in range(100):
 
-    randomBGInt = random.randint(0, 100)
-    if randomBGInt < 90:
-        BGInt = 0
-    if 90 <= randomBGInt < 95:
-        BGInt = 1
-    if 95 <= randomBGInt < 97:
-        BGInt = 2
-    if 97 <= randomBGInt <= 100:
-        BGInt = 3
+    randomLayer1Int = random.randint(0, 100)
 
-    chosenBG = bgs[BGInt]
+    if randomLayer1Int < 80:
+        randomLayer1Int = 0
+    if 80 <= randomLayer1Int < 90:
+        randomLayer1Int = 1
+    if 90 <= randomLayer1Int < 95:
+        randomLayer1Int = 2
+    if 95 <= randomLayer1Int < 97:
+        randomLayer1Int = 3
+    if 97 <= randomLayer1Int <= 100:
+        randomLayer1Int = 4
 
-    randomSmallCircle = random.randint(0, smallCirclesArrayCount)
-    chosenSmallCircle = smallCircles[randomSmallCircle]
+    randomLayer2Int = random.randint(0, 100)
 
-    randomBigCircle = random.randint(0, bigCirclesArrayCount)
-    chosenBigCircle = bigCircles[randomBigCircle]
+    if randomLayer2Int < 80:
+        randomLayer2Int = 0
+    if 80 <= randomLayer2Int < 90:
+        randomLayer2Int = 1
+    if 90 <= randomLayer2Int < 95:
+        randomLayer2Int = 2
+    if 95 <= randomLayer2Int < 97:
+        randomLayer2Int = 3
+    if 97 <= randomLayer2Int <= 100:
+        randomLayer2Int = 4
 
-    newImage = Image.alpha_composite(chosenBG, chosenBigCircle)
+    randomLayer3Int = random.randint(0, 100)
 
-    newImage = Image.alpha_composite(newImage, chosenSmallCircle)
+    if randomLayer3Int < 80:
+        randomLayer3Int = 0
+    if 80 <= randomLayer3Int < 90:
+        randomLayer3Int = 1
+    if 90 <= randomLayer3Int < 95:
+        randomLayer3Int = 2
+    if 95 <= randomLayer3Int < 97:
+        randomLayer3Int = 3
+    if 97 <= randomLayer3Int <= 100:
+        randomLayer3Int = 4
 
-    createdImage = [BGInt, randomSmallCircle, randomBigCircle]
+    randomLayer4Int = random.randint(0, 100)
+
+    if randomLayer4Int < 80:
+        randomLayer4Int = 0
+    if 80 <= randomLayer4Int < 90:
+        randomLayer4Int = 1
+    if 90 <= randomLayer4Int < 95:
+        randomLayer4Int = 2
+    if 95 <= randomLayer4Int < 97:
+        randomLayer4Int = 3
+    if 97 <= randomLayer4Int <= 100:
+        randomLayer4Int = 4
+
+    randomLayer5Int = random.randint(0, 100)
+
+    if randomLayer5Int < 80:
+        randomLayer5Int = 0
+    if 80 <= randomLayer5Int < 90:
+        randomLayer5Int = 1
+    if 90 <= randomLayer5Int < 95:
+        randomLayer5Int = 2
+    if 95 <= randomLayer5Int < 97:
+        randomLayer5Int = 3
+    if 97 <= randomLayer5Int <= 100:
+        randomLayer5Int = 4
+
+    chosenLayer1Image = LayerImages.layer1Images[randomLayer1Int]
+    chosenLayer2Image = LayerImages.layer2Images[randomLayer2Int]
+    chosenLayer3Image = LayerImages.layer3Images[randomLayer3Int]
+    chosenLayer4Image = LayerImages.layer4Images[randomLayer4Int]
+    chosenLayer5Image = LayerImages.layer5Images[randomLayer5Int]
+
+    firstComposite = Image.alpha_composite(chosenLayer1Image, chosenLayer2Image)
+
+    secondComposite = Image.alpha_composite(firstComposite, chosenLayer3Image)
+
+    thirdComposite = Image.alpha_composite(secondComposite, chosenLayer4Image)
+
+    fourthComposite = Image.alpha_composite(thirdComposite, chosenLayer5Image)
+
+    createdImage = [randomLayer1Int, randomLayer2Int, randomLayer3Int, randomLayer4Int, randomLayer5Int]
 
     if createdImage in createdImages:
         pass
