@@ -1,7 +1,7 @@
 from PIL import Image
 import random
 import glob
-import os
+import sys
 
 
 class LayerImages:
@@ -16,18 +16,12 @@ numberLayers = 5
 
 
 def get_layer_images(layer):
-    image_folder = "images/"
-
-    layer_folder_path = f'{image_folder}{layer}/'
-
     image_array = []
 
-    for x in os.listdir(layer_folder_path):
-        image_path = os.path.basename(x)
+    for x in glob.glob(f'images/{layer}/*.png'):
 
-        if image_path.__contains__(".png"):
-            image = Image.open(image_path)
-            image_array.append(image)
+        image = Image.open(x)
+        image_array.append(image)
 
     if layer == "layer1Images":
         LayerImages.layer1Images = image_array
@@ -39,45 +33,30 @@ def get_layer_images(layer):
         LayerImages.layer4Images = image_array
     elif layer == "layer5Images":
         LayerImages.layer5Images = image_array
+        print("running")
 
 
-for i in range(1, numberLayers):
+for i in range(1, numberLayers+1):
     get_layer_images(f'layer{i}Images')
 
 print(f'1 images: {LayerImages.layer1Images}')
 print(f'2 images: {LayerImages.layer2Images}')
 print(f'3 images: {LayerImages.layer3Images}')
+print(f'4 images: {LayerImages.layer4Images}')
+print(f'5 images: {LayerImages.layer5Images}')
 
 # import folder
 # for loop of folder and get all names of images
 # append to array
 # define number of layers and layer order
 
-whiteBG = Image.open("whiteBG.png")
-albaBG = Image.open("albaBG.png")
-mintGB = Image.open("mintBG.png")
-babyBlueBG = Image.open("babyBlueBG.png")
-bgs = [whiteBG, albaBG, mintGB, babyBlueBG]
-bgsArrayCount = len(bgs) - 1
-
-whiteSmallCircle = Image.open("whiteSmallCircle.png")
-albaSmallCircle = Image.open("albaSmallCircle.png")
-mintSmallCircle = Image.open("mintSmallCircle.png")
-babyBlueSmallCircle = Image.open("babyBlueSmallCircle.png")
-smallCircles = [whiteSmallCircle, albaSmallCircle, mintSmallCircle, babyBlueSmallCircle]
-smallCirclesArrayCount = len(smallCircles) - 1
-
-whiteBigCircle = Image.open("whiteBigCircle.png")
-albaBigCircle = Image.open("albaBigCircle.png")
-mintBigCircle = Image.open("mintBigCircle.png")
-babyBlueBigCircle = Image.open("babyBlueBigCircle.png")
-bigCircles = [whiteBigCircle, albaBigCircle, mintBigCircle, babyBlueBigCircle]
-bigCirclesArrayCount = len(bigCircles) - 1
-
 createdImages = []
 
 i = 1
 for i in range(100):
+
+    if numberLayers < 1:
+        sys.exit("no layer 1")
 
     randomLayer1Int = random.randint(0, 100)
 
@@ -92,6 +71,9 @@ for i in range(100):
     if 97 <= randomLayer1Int <= 100:
         randomLayer1Int = 4
 
+    if numberLayers < 2:
+        sys.exit("no layer 2")
+
     randomLayer2Int = random.randint(0, 100)
 
     if randomLayer2Int < 80:
@@ -104,6 +86,9 @@ for i in range(100):
         randomLayer2Int = 3
     if 97 <= randomLayer2Int <= 100:
         randomLayer2Int = 4
+
+    if numberLayers < 3:
+        sys.exit("no layer 3")
 
     randomLayer3Int = random.randint(0, 100)
 
@@ -118,6 +103,9 @@ for i in range(100):
     if 97 <= randomLayer3Int <= 100:
         randomLayer3Int = 4
 
+    if numberLayers < 4:
+        sys.exit("no layer 4")
+
     randomLayer4Int = random.randint(0, 100)
 
     if randomLayer4Int < 80:
@@ -130,6 +118,9 @@ for i in range(100):
         randomLayer4Int = 3
     if 97 <= randomLayer4Int <= 100:
         randomLayer4Int = 4
+
+    if numberLayers < 5:
+        sys.exit("no layer 5")
 
     randomLayer5Int = random.randint(0, 100)
 
@@ -167,4 +158,4 @@ for i in range(100):
         iString = str(i)
 
         createdImages.append(createdImage)
-        # newImage.save(f"{iString}.png")
+        fourthComposite.save(f"{iString}.png")
